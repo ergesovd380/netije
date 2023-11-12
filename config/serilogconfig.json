@@ -1,0 +1,32 @@
+{
+  "Serilog": {
+    "Using": [ "Serilog.Sinks.Seq" ],
+    "MinimumLevel": {
+      "Default": "Information",
+      "Override": {
+        "Microsoft": "Warning",
+        "System": "Warning"
+      }
+    },
+    "Enrich": [ "FromLogContext", "WithMachineName" ],
+    "WriteTo": [
+      {
+        "Name": "Async",
+        "Args": {
+          "configure": [
+            {
+              "Name": "Seq",
+              "Args": {
+                "serverUrl": "http://seq:80",
+                "apiKey": "s41Gdrsw7CdKAlB6yfyw"
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "Properties": {
+      "Application": "Netije"
+    }
+  }
+}

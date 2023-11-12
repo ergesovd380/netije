@@ -1,0 +1,22 @@
+version: '3.4'
+
+services:
+   netije:
+    container_name: netije
+    image: netije_v1.0.2.0:latest
+    restart: always
+    ports:
+      - 443:443
+      - 80:80
+
+   workflow-process-service:
+    container_name: workflow-process-service
+    image: workflow-process-service:latest
+    restart: always
+   
+networks:
+  netije-network:
+    driver: bridge
+
+volumes:
+  netije-api-data:

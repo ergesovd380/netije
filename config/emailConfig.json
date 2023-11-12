@@ -1,0 +1,10 @@
+{
+  "EmailOptions": {
+    "Sender": "t.kleperson@turkmen-tranzit.com",
+    "SmtpServer": "smtp.mail.ru",
+	"UseSsl" : "false",
+    "Port": 465,
+    "Username": "t.kleperson@turkmen-tranzit.com",
+    "Password": "supersecretpassword!"
+  }
+}

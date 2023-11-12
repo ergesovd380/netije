@@ -1,0 +1,13 @@
+﻿<License>
+  <Id>cce630c5-66b4-4c88-98b6-43f9ad0b0dfb</Id>
+  <Type>Standard</Type>
+  <Quantity>3</Quantity>
+  <LicenseAttributes>
+    <Attribute name="UsersCount">200</Attribute>
+  </LicenseAttributes>
+  <Customer>
+    <Name>Государственный Коммерческий банк Туркменистана «Туркменистан»</Name>
+    <Email></Email>
+  </Customer>
+  <Signature>MEUCIQCLR5sVfRtto/cydCaEnIECWMXFFAanS60qTeA1VwpXfQIgbWhT84qocuNAbzPXFXn3ndUoYYvr2kjtZ12G1DLJf/k=</Signature>
+</License>

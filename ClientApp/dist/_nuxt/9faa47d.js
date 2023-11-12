@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[38],{2319:function(n,e,t){"use strict";t.r(e);var r={components:{groupCard:t(586).a}},o=t(7),component=Object(o.a)(r,(function(){var n=this.$createElement;return(this._self._c||n)("group-card")}),[],!1,null,null,null);e.default=component.exports}}]);

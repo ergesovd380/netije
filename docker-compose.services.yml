@@ -1,0 +1,22 @@
+version: '3.4'
+
+services:
+   minio:
+    container_name: minio
+    image: minio/minio
+    restart: always
+
+   rabbitmqdb:
+    container_name: rabbitmq
+    image: rabbitmq:latest
+    restart: always
+   
+   pgAdmin:
+    container_name: pgAdmin
+    image: dpage/pgadmin4
+    restart: always
+    
+volumes:
+  minio-data:
+  rabbitmq-data:
+  pgAdmin-data:

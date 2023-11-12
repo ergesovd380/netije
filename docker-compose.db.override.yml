@@ -1,0 +1,24 @@
+﻿version: '3.4'
+
+services:
+   postgresdb:
+    ports:
+     - 5432:5432 
+    volumes:
+     - postgres-db-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+    networks:
+     - netije-network
+    
+   mongodb:
+    ports:
+     - 27017:27017
+    volumes:
+     - mongo-db-data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+    networks:
+     - netije-network

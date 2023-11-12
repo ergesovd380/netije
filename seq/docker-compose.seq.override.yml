@@ -1,0 +1,14 @@
+﻿version: '3.4'
+
+services:
+  seq2:
+    environment:
+      - ACCEPT_EULA=Y
+      - SEQ_FIRSTRUN_ADMINPASSWORD=Password1!
+    networks:
+     - netije-network
+     - nginx_network
+    volumes:
+     - seq-data:/data
+    ports:
+      - 5342:80

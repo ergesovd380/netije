@@ -1,0 +1,2 @@
+﻿#!bin/sh
+docker-compose -f docker-compose.yml -f docker-compose.override.yml -f docker-compose.seq.yml -f docker-compose.seq.override.yml -f docker-compose.converter.yml -f docker-compose.converter.override.yml -f docker-compose.db.yml -f docker-compose.db.override.yml -f docker-compose.malware.yml -f docker-compose.malware.override.yml -f docker-compose.services.yml -f docker-compose.services.override.yml down

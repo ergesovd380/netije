@@ -1,0 +1,7 @@
+version: '3.4'
+
+services:
+   converter:
+    container_name: converter
+    image: alephdata/convert-document
+    restart: always

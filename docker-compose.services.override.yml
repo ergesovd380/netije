@@ -1,0 +1,42 @@
+version: '3.4'
+
+services:
+  minio:
+    volumes:
+      - minio-data:/data
+    ports:
+      - 9000:9000
+    environment:
+      MINIO_ACCESS_KEY: ${MINIO_ACCESS_KEY}
+      MINIO_SECRET_KEY: ${MINIO_SECRET_KEY}
+    command: server /data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 30s
+      timeout: 20s
+      retries: 3
+    networks:
+     - netije-network
+
+  rabbitmqdb:
+    hostname: "localhost"
+    ports:
+     - 5672:5672
+    volumes:
+     - rabbitmq-data:/var/lib/rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS}
+    networks: 
+     - netije-network
+  
+  pgAdmin:
+    ports:
+     - 8080:80
+    volumes:
+     - pgAdmin-data:/var/lib/pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD}
+    networks: 
+     - netije-network

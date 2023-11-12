@@ -1,0 +1,47 @@
+version: '3.4'
+
+services:
+  netije:
+    environment:
+      - ConnectionStrings__DefaultConnection=Server=${POSTGRES_HOST};Port=${POSTGRES_PORT};Database=${POSTGRES_DB};User Id=${POSTGRES_USER};Password=${POSTGRES_PASSWORD}
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=Password1!
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
+      - WAIT_HOSTS=${APP_WAIT_HOSTS}
+      - Minio__Endpoint=${MINIO_ENDPOINT}
+      - Minio__AccessKey=${MINIO_ACCESS_KEY}
+      - Minio__SecretKey=${MINIO_SECRET_KEY}
+      - Minio__Secure=${MINIO_SECURE}
+      - Redis__Host=${REDIS_HOST}
+      - Redis__InstanceName=${REDIS_INSTANCE_NAME}
+      - EventBus__IPAddress=${RABBITMQ_HOST}
+      - EventBus__UserName=${RABBITMQ_DEFAULT_USER}
+      - EventBus__Password=${RABBITMQ_DEFAULT_PASS}
+      - EventBus__PortNumber=${RABBITMQ_DEFAULT_PORT} 
+      - Organization__Name=Netije
+      - Organization__MainLanguage=ru
+      - WorkflowSettings__ConnectionString=${MONGO_HOST}
+      - WorkflowSettings__DatabaseName=${MONGO_WORKFLOW_DATABASE_NAME}
+    networks:
+     - netije-network
+    volumes:
+     - ./certs/app:/https:ro
+     - ./ClientApp:/app/ClientApp:ro
+     - ./license:/netije/license:ro
+     - ./config:/config:ro
+     - netije-api-data:/app/PrivateStaticFiles
+    command: sh -c "/wait && dotnet TTDoc.UI.dll"
+
+  workflow-process-service:
+    environment:
+       WAIT_HOSTS: ${WORKFLOW_SERVICE_WAIT_HOSTS}
+       EventBus__IPAddress: ${RABBITMQ_HOST}
+       EventBus__UserName: ${RABBITMQ_DEFAULT_USER}
+       EventBus__Password: ${RABBITMQ_DEFAULT_PASS}
+       EventBus__PortNumber: ${RABBITMQ_DEFAULT_PORT}
+       WorkflowSettings__ConnectionString: ${MONGO_HOST}
+       WorkflowSettings__DatabaseName: ${MONGO_WORKFLOW_DATABASE_NAME}
+    networks:
+     - netije-network
+    command: sh -c "/wait && dotnet WorkflowProcessService.dll"
